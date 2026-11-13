@@ -1,0 +1,4 @@
+interface:
+  display_name: "PRD 写作助手"
+  short_description: "通过追问完善需求并交付 PRD、产品设计与测试文档"
+  default_prompt: "Use $prd-writing to turn this product idea into a complete PRD, product design document, and test document."
