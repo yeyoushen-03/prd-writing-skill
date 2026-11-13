@@ -59,3 +59,11 @@ $prd-writing 我想做一个帮助独立开发者管理 AI 编程项目的工具
 ## 许可
 
 本项目采用 MIT License，详见 [LICENSE](LICENSE)。
+
+---
+
+<div align="center">
+  <h3>联系作者</h3>
+  <p>扫码加微信，交流反馈</p>
+  <img src="assets/wechat-qr.jpg" alt="微信二维码" width="200">
+</div>
