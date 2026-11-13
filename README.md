@@ -64,6 +64,6 @@ $prd-writing 我想做一个帮助独立开发者管理 AI 编程项目的工具
 
 <div align="center">
   <h3>联系作者</h3>
-  <p>扫码加微信，交流反馈</p>
-  <img src="assets/wechat-qr.jpg" alt="微信二维码" width="200">
+  <p>欢迎技术交流</p>
+  <img src="assets/wechat-qr.png" alt="微信二维码" width="200">
 </div>
