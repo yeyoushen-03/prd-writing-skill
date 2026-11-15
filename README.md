@@ -14,13 +14,11 @@
 
 ## 安装
 
-仓库中的 `.agents/skills/prd-writing/` 是唯一维护源，包含平台无关的 `SKILL.md` 和参考资料。按所用工具复制到对应的自动发现目录即可；Codex 专属的 `agents/openai.yaml` 在 Claude Code 中不会使用。
+仓库中的 `.agents/skills/prd-writing/` 是唯一维护源，包含平台无关的 `SKILL.md` 和参考资料。仓库内的 `.claude/skills/prd-writing` 是指向该目录的符号链接；Codex 专属的 `agents/openai.yaml` 在 Claude Code 中不会使用。
 
 ### Codex
 
-项目级安装：
-
-将本仓库中的技能目录复制到目标项目的 `.agents/skills/` 下：
+直接在本仓库中打开 Codex，即可从 `.agents/skills/` 发现技能。安装到其他项目时，将技能目录复制到目标项目的 `.agents/skills/` 下：
 
 ```sh
 mkdir -p /path/to/your-project/.agents/skills
@@ -31,7 +29,9 @@ cp -R .agents/skills/prd-writing /path/to/your-project/.agents/skills/
 
 ### Claude Code
 
-项目级安装：
+直接克隆本仓库并在仓库根目录启动 Claude Code，即可通过 `.claude/skills/prd-writing` 符号链接发现技能。使用 `/prd-writing` 调用。
+
+如果你下载的是 ZIP、文件系统不保留符号链接，或要安装到另一个项目，请复制为真实目录：
 
 ```sh
 mkdir -p /path/to/your-project/.claude/skills
@@ -45,7 +45,7 @@ mkdir -p ~/.claude/skills
 cp -R .agents/skills/prd-writing ~/.claude/skills/
 ```
 
-安装后，在 Claude Code 中使用 `/prd-writing` 调用，也可以直接描述需求让 Claude Code 自动匹配该技能。
+用户级安装后，在 Claude Code 中使用 `/prd-writing` 调用。也可以直接描述需求，让 Claude Code 自动匹配该技能。
 
 ### Codex 用户级安装
 
@@ -69,6 +69,7 @@ Claude Code 中可将上面的 `$prd-writing` 替换为 `/prd-writing`。也可�
 ## 目录结构
 
 ```text
+.claude/skills/prd-writing -> ../../.agents/skills/prd-writing
 .agents/skills/prd-writing/
 ├── SKILL.md
 ├── agents/openai.yaml

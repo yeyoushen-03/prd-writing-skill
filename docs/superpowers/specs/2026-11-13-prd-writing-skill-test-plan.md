@@ -190,8 +190,9 @@
 **结构检查：**
 
 - `SKILL.md` frontmatter 包含有效的 `name` 和 `description`；Claude Code 的使用不依赖 Codex 专属元数据。
-- 技能引用的所有参考文件均使用相对路径且存在；将技能目录分别复制到 `.agents/skills/prd-writing/` 和 `.claude/skills/prd-writing/` 后，引用仍可解析。
-- README 分别说明 Codex 的 `$prd-writing` 与 Claude Code 的 `/prd-writing` 调用方式，并涵盖两种工具的项目级和用户级安装路径。
+- `.claude/skills/prd-writing` 是有效相对符号链接，目标为 `.agents/skills/prd-writing`；链接下的 `SKILL.md` 与全部参考文件可读，引用的相对路径解析正确。
+- README 说明克隆并在仓库根目录打开即可由 Claude Code 发现技能，同时分别说明 Codex 的 `$prd-writing`、Claude Code 的 `/prd-writing`，以及跨项目和用户级安装路径。
+- 对不保留符号链接的下载方式，README 给出复制为真实目录的备用安装步骤。
 
 **行为检查：**
 
@@ -215,7 +216,7 @@
 - 在需要澄清的用例中，所有适用维度不得出现 0 分，整体适用维度平均分至少 1.5 分。用户明确拒绝提问的用例不计提问评分。
 - 任一关键项未通过即判定该轮测试不通过；修订后重跑失败用例及受影响的回归用例。
 - Skill validator 必须通过，但 validator 结果不能替代行为测试。
-- 双平台结构检查通过；若任一平台的实际加载行为改变核心工作流，修复后在该平台及另一平台重跑受影响用例。
+- 双平台结构检查通过；若任一平台的实际加载行为改变核心工作流，修复后在该平台及另一平台重跑受影响用例。符号链接目标缺失或不兼容时，按 README 备用步骤验证复制安装。
 
 ## 缺陷记录与回归
 
