@@ -14,7 +14,18 @@
 
 ## 安装
 
-仓库中的 `.agents/skills/prd-writing/` 是唯一维护源，包含平台无关的 `SKILL.md` 和参考资料。仓库内的 `.claude/skills/prd-writing` 是指向该目录的符号链接；Codex 专属的 `agents/openai.yaml` 在 Claude Code 中不会使用。
+### Claude Code 插件安装（推荐）
+
+在 Claude Code 中执行：
+
+```text
+/plugin marketplace add yeyoushen-03/prd-writing-skill
+/plugin install prd-writing@prd-writing-skill
+```
+
+安装后重启 Claude Code，使用 `/prd-writing:prd-writing` 调用。也可以直接描述需求，让 Claude Code 自动匹配该 Skill。若 Claude Code 提示信任或确认插件来源，请核对来源为 `yeyoushen-03/prd-writing-skill` 后再确认。
+
+Codex 与项目内自动发现入口以 `.agents/skills/prd-writing/` 为维护源。Claude Code 插件使用 `plugins/prd-writing/` 下的独立镜像，以满足插件包自包含要求；修改 Skill 或参考资料后，需同步镜像并运行 `node scripts/check-plugin-sync.mjs`。
 
 ### Codex
 
@@ -27,9 +38,9 @@ cp -R .agents/skills/prd-writing /path/to/your-project/.agents/skills/
 
 安装后，在目标项目的 Codex 会话中使用 `$prd-writing` 调用。
 
-### Claude Code
+### Claude Code：项目内自动发现
 
-直接克隆本仓库并在仓库根目录启动 Claude Code，即可通过 `.claude/skills/prd-writing` 符号链接发现技能。使用 `/prd-writing` 调用。
+直接克隆本仓库并在仓库根目录启动 Claude Code，即可通过 `.claude/skills/prd-writing` 符号链接发现技能。使用 `/prd-writing` 调用。该方式适用于在此仓库内工作；若希望从 GitHub 将技能安装到 Claude Code 并在其他项目使用，请使用上面的插件安装方式。
 
 如果你下载的是 ZIP、文件系统不保留符号链接，或要安装到另一个项目，请复制为真实目录：
 
@@ -80,6 +91,19 @@ Claude Code 中可将上面的 `$prd-writing` 替换为 `/prd-writing`。也可�
     ├── test-document-structure.md
     └── visual-design-research.md
 ```
+
+## Claude Code 插件结构
+
+```text
+.claude-plugin/marketplace.json
+plugins/prd-writing/
+├── .claude-plugin/plugin.json
+└── skills/prd-writing/
+    ├── SKILL.md
+    └── references/
+```
+
+Marketplace 清单位于仓库根目录，插件清单和 Skill 位于插件目录内。`.agents/skills/prd-writing/agents/openai.yaml` 是 Codex 专属元数据，不复制到 Claude Code 插件中。
 
 ## 许可
 

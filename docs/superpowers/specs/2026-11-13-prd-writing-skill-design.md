@@ -2,7 +2,7 @@
 
 ## 目标与范围
 
-创建一个可由 Codex 与 Claude Code 自动发现的通用 skill，帮助产品经理及跨职能团队把产品想法转化为可评审、可设计、可验证的完整需求文档，或提升已有需求材料的完整性与可执行性。两种工具共用同一份核心指令与参考资料；`.agents/skills/` 为唯一维护源，`.claude/skills/` 通过符号链接提供 Claude Code 自动发现入口；Codex 专属元数据仅作为可选配置保留。
+创建一个可由 Codex 与 Claude Code 使用的通用 skill，帮助产品经理及跨职能团队把产品想法转化为可评审、可设计、可验证的完整需求文档，或提升已有需求材料的完整性与可执行性。Codex 与项目内自动发现入口从 `.agents/skills/` 维护源读取；Claude Code 同时支持项目内 `.claude/skills/` 发现，以及通过 GitHub Claude Code 插件 Marketplace 安装。Marketplace 插件位于 `plugins/prd-writing/`，包含自有 manifest 和 Skill 文件镜像；同步检查脚本保证核心说明与参考资料不漂移。Codex 专属元数据仅作为可选配置保留。
 
 每次完整流程都必须交付三份文档：PRD、产品设计文档、测试文档。不得只交付 PRD，也不得因信息不足而省略另外两份；无法确定的内容应以明确的假设、约束或待确认项表达。Skill 面向通用产品与 AI 产品。通用工作流保持一致；仅当 AI 能力会影响产品结果时，才加载 AI 专项要求。用户可以选择先在对话中迭代再定稿，或直接生成文档。默认行为是先做必要的自适应澄清，再完成并交付三份 Markdown 文档。
 

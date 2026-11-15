@@ -1,0 +1,9 @@
+{
+  "name": "prd-writing",
+  "version": "1.0.0",
+  "description": "将产品想法整理为完整且相互关联的 PRD、产品设计文档和测试文档。",
+  "author": {
+    "name": "夜游榊"
+  },
+  "license": "MIT"
+}

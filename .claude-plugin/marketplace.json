@@ -1,0 +1,17 @@
+{
+  "name": "prd-writing-skill",
+  "owner": {
+    "name": "夜游榊"
+  },
+  "metadata": {
+    "description": "面向 AI 辅助项目开发的 PRD、产品设计与测试文档写作 Skill。",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "prd-writing",
+      "source": "./plugins/prd-writing",
+      "description": "将产品想法整理为完整且相互关联的 PRD、产品设计文档和测试文档。"
+    }
+  ]
+}
