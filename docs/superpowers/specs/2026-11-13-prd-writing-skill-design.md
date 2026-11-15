@@ -2,7 +2,7 @@
 
 ## 目标与范围
 
-创建一个可自动发现的 Codex skill，帮助产品经理及跨职能团队把产品想法转化为可评审、可设计、可验证的完整需求文档，或提升已有需求材料的完整性与可执行性。
+创建一个可由 Codex 与 Claude Code 自动发现的通用 skill，帮助产品经理及跨职能团队把产品想法转化为可评审、可设计、可验证的完整需求文档，或提升已有需求材料的完整性与可执行性。两种工具共用同一份核心指令与参考资料，按平台分别安装到 `.agents/skills/` 或 `.claude/skills/`；Codex 专属元数据仅作为可选配置保留。
 
 每次完整流程都必须交付三份文档：PRD、产品设计文档、测试文档。不得只交付 PRD，也不得因信息不足而省略另外两份；无法确定的内容应以明确的假设、约束或待确认项表达。Skill 面向通用产品与 AI 产品。通用工作流保持一致；仅当 AI 能力会影响产品结果时，才加载 AI 专项要求。用户可以选择先在对话中迭代再定稿，或直接生成文档。默认行为是先做必要的自适应澄清，再完成并交付三份 Markdown 文档。
 
@@ -78,7 +78,7 @@ prd-writing/
     └── visual-design-research.md
 ```
 
-`SKILL.md` 负责入口识别、工作流、追问、三份文档的共同交付要求与一致性检查。`prd-structure.md`、`product-design-structure.md` 和 `test-document-structure.md` 分别说明三份文档的职责、结构和裁剪原则；`ai-product-checklist.md` 说明 AI 专项的适用条件及其在三份文档中的映射；`visual-design-research.md` 仅在用户界面视觉方向属于设计范围时，指导检索和转译 Refero Styles 等具体参考，不把参考库首页当作设计规范。首版不加入脚本或示例库；只有重复使用或验证中出现明确需求时再考虑扩展。保持默认自动发现。
+`SKILL.md` 负责入口识别、工作流、追问、三份文档的共同交付要求与一致性检查。核心 frontmatter 仅使用两种工具均支持的 `name` 和 `description`，参考资料使用相对路径。Codex 从 `.agents/skills/prd-writing/` 发现技能；Claude Code 从 `.claude/skills/prd-writing/` 发现技能。仓库以 `.agents/skills/prd-writing/` 为唯一维护源，README 提供复制到 Claude Code 项目级或用户级目录的安装方式，不维护重复副本。`agents/openai.yaml` 是 Codex 专属的可选元数据，Claude Code 不依赖它。`prd-structure.md`、`product-design-structure.md` 和 `test-document-structure.md` 分别说明三份文档的职责、结构和裁剪原则；`ai-product-checklist.md` 说明 AI 专项的适用条件及其在三份文档中的映射；`visual-design-research.md` 仅在用户界面视觉方向属于设计范围时，指导检索和转译 Refero Styles 等具体参考，不把参考库首页当作设计规范。首版不加入脚本或示例库；只有重复使用或验证中出现明确需求时再考虑扩展。
 
 ## 质量原则
 
@@ -97,6 +97,7 @@ prd-writing/
 - 检查技能描述是否准确且有区分度，`SKILL.md` 是否足够精简，参考材料是否按需加载。
 - 确认自适应澄清与内部审查规则放在主工作流或精简参考资料中，不将澄清扩展成固定长问卷；面向用户的提问和交付物不暴露方法名称。
 - 确认 Refero 只在涉及界面视觉方向时触发；具体视觉规则须基于可访问的样式条目，而非从 Refero 首页、标题或缩略图推断。
+- 确认相同的核心 `SKILL.md` 和参考资料可分别放入 Codex 与 Claude Code 的发现目录；平台安装说明与各自调用方式正确，Claude Code 不依赖 `agents/openai.yaml`。
 
 ### 行为验收
 

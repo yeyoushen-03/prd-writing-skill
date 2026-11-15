@@ -1,6 +1,6 @@
 # PRD Writing Skill
 
-一个面向 AI 辅助项目开发的 Codex Skill，帮助产品经理和开发者把产品想法或现有需求整理为可讨论、可实现、可验收的文档。
+一个面向 AI 辅助项目开发的通用 Skill，兼容 Codex 与 Claude Code，帮助产品经理和开发者把产品想法或现有需求整理为可讨论、可实现、可验收的文档。
 
 ## 能做什么
 
@@ -14,25 +14,49 @@
 
 ## 安装
 
-### 仅用于当前项目
+仓库中的 `.agents/skills/prd-writing/` 是唯一维护源，包含平台无关的 `SKILL.md` 和参考资料。按所用工具复制到对应的自动发现目录即可；Codex 专属的 `agents/openai.yaml` 在 Claude Code 中不会使用。
 
-将 `.agents/skills/prd-writing/` 整个目录复制到目标项目的 `.agents/skills/` 下：
+### Codex
+
+项目级安装：
+
+将本仓库中的技能目录复制到目标项目的 `.agents/skills/` 下：
 
 ```sh
 mkdir -p /path/to/your-project/.agents/skills
 cp -R .agents/skills/prd-writing /path/to/your-project/.agents/skills/
 ```
 
-### 用于自己的所有项目
+安装后，在目标项目的 Codex 会话中使用 `$prd-writing` 调用。
 
-将 Skill 目录复制到用户级技能目录：
+### Claude Code
+
+项目级安装：
+
+```sh
+mkdir -p /path/to/your-project/.claude/skills
+cp -R .agents/skills/prd-writing /path/to/your-project/.claude/skills/
+```
+
+用户级安装（对自己的所有项目生效）：
+
+```sh
+mkdir -p ~/.claude/skills
+cp -R .agents/skills/prd-writing ~/.claude/skills/
+```
+
+安装后，在 Claude Code 中使用 `/prd-writing` 调用，也可以直接描述需求让 Claude Code 自动匹配该技能。
+
+### Codex 用户级安装
+
+将技能目录复制到用户级目录：
 
 ```sh
 mkdir -p ~/.agents/skills
 cp -R .agents/skills/prd-writing ~/.agents/skills/
 ```
 
-安装后，在目标项目中新开 Codex 会话，然后使用 `$prd-writing` 调用。
+安装后，在 Codex 会话中使用 `$prd-writing` 调用。
 
 ## 使用示例
 
@@ -40,7 +64,7 @@ cp -R .agents/skills/prd-writing ~/.agents/skills/
 $prd-writing 我想做一个帮助独立开发者管理 AI 编程项目的工具。请先帮我梳理关键需求，再分别完成 PRD、产品设计文档和测试文档。
 ```
 
-也可以提供现有需求草稿，并说明文档的保存位置、文件格式或团队模板。信息暂缺时，Skill 会标注假设和待确认项，仍完成三份文档。
+Claude Code 中可将上面的 `$prd-writing` 替换为 `/prd-writing`。也可以提供现有需求草稿，并说明文档的保存位置、文件格式或团队模板。信息暂缺时，Skill 会标注假设和待确认项，仍完成三份文档。
 
 ## 目录结构
 
